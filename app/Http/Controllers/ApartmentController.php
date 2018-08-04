@@ -14,8 +14,9 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-
-        return view("apartment.form")->with("list_products", Apartment::orderBy('id', 'DESC')->paginate(6));
+        $list = Apartment::where('status', 1)->paginate(6);
+        return view('apartment.form')
+            ->with('list', $list);
     }
 
     /**
